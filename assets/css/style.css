@@ -1,0 +1,302 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+:root {
+  --size: 9.5rem;
+  --gap: 5px;
+  --bg-color: #11111a;
+  scrollbar-width: none;
+}
+
+:root::-webkit-scrollbar {
+  width: 0;
+}
+
+@media (max-width: 505px) {
+  :root {
+    --size: 25rem;
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    font-size: 12px;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg-color);
+}
+
+/* Display Flex Way*/
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  min-height: 100vh;
+  padding: 0 15px;
+  overflow: hidden;
+}
+
+@media (max-width: 505px) {
+  .container {
+    padding: 15px;
+  }
+}
+
+.container__title {
+  position: relative;
+  color: transparent;
+  font-size: 3.5rem;
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+  -webkit-text-stroke: 1.2px #ddd;
+  z-index: 2;
+}
+
+.container__title--water-mark {
+  position: fixed;
+  bottom: 5%;
+  right: 2%;
+  font-size: 2.5rem;
+}
+
+.portfolio {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+@media (min-width: 700px) {
+  .portfolio {
+    -webkit-transform: rotate(-45deg) translate(20%, -20%);
+            transform: rotate(-45deg) translate(20%, -20%);
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+  }
+}
+
+.portfolio__line {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+@media (min-width: 700px) {
+  .portfolio__line:not(:last-child) {
+    margin-right: var(--gap);
+  }
+}
+
+@media (min-width: 700px) {
+  .portfolio__line {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.portfolio__block {
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+@media (max-width: 504px) {
+  .portfolio__block {
+    margin-bottom: var(--gap);
+  }
+}
+
+@media (min-width: 505px) {
+  .portfolio__block:not(:last-child) {
+    margin-bottom: var(--gap);
+  }
+}
+
+@media (min-width: 505px) and (max-width: 700px) {
+  .portfolio__block:not(:last-child) {
+    margin-right: var(--gap);
+  }
+}
+
+.portfolio__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+@media (min-width: 700px) {
+  .portfolio__content {
+    -webkit-transform: rotate(45deg) scale(1.4);
+            transform: rotate(45deg) scale(1.4);
+  }
+}
+
+.portfolio__content img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.portfolio__content:hover .portfolio__overlay {
+  -webkit-transform: rotate(0) scale(1);
+          transform: rotate(0) scale(1);
+  opacity: 1;
+}
+
+@media (min-width: 700px) {
+  .portfolio__content:hover .portfolio__overlay {
+    -webkit-transform: rotate(45deg) scale(1);
+            transform: rotate(45deg) scale(1);
+  }
+}
+
+.portfolio__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform: rotate(0) scale(0);
+          transform: rotate(0) scale(0);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: rgba(34, 34, 34, 0.6);
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  -webkit-transition: all ease-out .4s;
+  transition: all ease-out .4s;
+}
+
+@media (min-width: 700px) {
+  .portfolio__overlay {
+    -webkit-transform: rotate(45deg) scale(0);
+            transform: rotate(45deg) scale(0);
+  }
+}
+
+.portfolio__overlay__icon {
+  width: 30px;
+  height: 30px;
+  color: #fff;
+}
+
+@media (max-width: 504px) {
+  .portfolio__overlay__icon {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (min-width: 700px) {
+  .portfolio__overlay__icon {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+  }
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+          transform: translate(-50%, -50%) scale(0);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  cursor: -webkit-zoom-out;
+  cursor: zoom-out;
+  z-index: 9;
+}
+
+.popup.active {
+  -webkit-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+}
+
+.popup__content {
+  position: absolute;
+  width: 70%;
+  height: 45%;
+  border: 1rem solid #fff;
+}
+
+@media (min-width: 505px) {
+  .popup__content {
+    height: 90%;
+  }
+}
+
+.popup img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+/*# sourceMappingURL=style.css.map */

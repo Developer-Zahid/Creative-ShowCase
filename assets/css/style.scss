@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+:root{
+    --size: 9.5rem;
+    --gap: 5px;
+    --bg-color: #11111a;
+    scrollbar-width: none;
+    &::-webkit-scrollbar{
+        width: 0;
+    }
+    @media (max-width:505px) {
+        --size: 25rem;
+    }
+    @media (max-width:900px) {
+        font-size: 12px;
+    }
+}
+
+$size: var(--size);
+$gap: var(--gap);
+$bg-color: var(--bg-color);
+
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background: $bg-color;
+}
+
+// Display Grid Way
+
+// .portfolio{
+//     display: grid;
+//     grid-template-columns: repeat(7, $size);
+//     grid-template-rows: repeat(4, $size);
+//     width: auto;
+//     &__block{
+//         position: relative;
+//         width: $size;
+//         height: $size;
+//         border-radius: 3px;
+//         transform: rotate(45deg);
+//         background: red;
+//         cursor: pointer;
+//         &--hidden{
+//             visibility: hidden;
+//             opacity: 0;
+//             width: 0;
+//         }
+//         &:nth-child(1){
+//             margin-left: 0;
+//         }
+//     }
+// }
+//====================================
+
+/* Display Flex Way*/
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 0 15px;
+    overflow: hidden;
+    @media (max-width:505px) {
+        padding: 15px;
+    }
+    &__title{
+        position: relative;
+        color: transparent;
+        font-size: 3.5rem;
+        font-weight: 900;
+        text-align: center;
+        text-transform: uppercase;
+        -webkit-text-stroke: 1.2px #ddd;
+        z-index: 2;
+        &--water-mark{
+            position: fixed;
+            bottom: 5%;
+            right: 2%;
+            font-size: 2.5rem;
+        }
+    }
+}
+
+.portfolio{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    @media (min-width:700px) {
+        transform: rotate(-45deg) translate(20%,-20%);
+        flex-direction: row;
+        align-items: flex-end;
+    }
+    &__line{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        @media (min-width:700px) {
+            &:not(:last-child){
+                margin-right: $gap;
+            }
+        }
+        @media (min-width:700px) {
+            flex-direction: column;
+        }
+    }
+    &__block{
+        position: relative;
+        width: $size;
+        height: $size;
+        border-radius: 3px;
+        overflow: hidden;
+        @media (max-width:504px) {
+            margin-bottom: $gap;
+        }
+        @media (min-width:505px) {
+            &:not(:last-child){
+                margin-bottom: $gap;
+            }
+        }
+        @media (min-width:505px) and (max-width:700px) {
+            &:not(:last-child){
+                margin-right: $gap;
+            }
+        }
+    }
+    &__content{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        @media (min-width:700px) {
+            transform: rotate(45deg) scale(1.4);
+        }
+        img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        &:hover{
+            .portfolio__overlay{
+                transform: rotate(0) scale(1);
+                opacity: 1;
+                @media (min-width:700px) {
+                    transform: rotate(45deg) scale(1);
+                }
+            }
+        }
+    }
+    &__overlay{
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: rotate(0) scale(0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba($color: #222, $alpha: 0.6);
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: all ease-out .4s;
+        @media (min-width:700px) {
+            transform: rotate(45deg) scale(0);
+        }
+        &__icon {
+           width: 30px;
+           height: 30px;
+           color: #fff;
+           @media (max-width:504px) {
+               width: 50px;
+               height: 50px;
+           }
+           @media (min-width:700px) {
+                transform: rotate(-45deg);
+           }
+        }
+    }
+}
+
+.popup{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: rgba($color: #000000, $alpha: 0.8);
+    cursor: zoom-out;
+    z-index: 9;
+    &.active{
+        transform: translate(-50%,-50%) scale(1);
+    }
+    &__content{
+        position: absolute;
+        width: 70%;
+        height: 45%;
+        border: 1rem solid #fff;
+        @media (min-width:505px) {
+            height: 90%;
+        }
+    }
+    img{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
